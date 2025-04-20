@@ -30,12 +30,12 @@ exports.getItems = async (req, res)=>{
 exports.getItemById = async (req, res)=>{
      try{
         const {id} = req.params;
-        const item = await item.findByPk(id);
+        const items = await item.findByPk(id);
 
-        if(!item){
+        if(!items){
             return res.status(404).json({ message: 'Item not found' });
         }
-        res.status(200).json(item);
+        res.status(200).json(items);
      }catch(err){
         res.status(500).json({ message: err.message });
      }
@@ -53,7 +53,7 @@ exports.updateItem = async (req, res)=>{
 
         
         itemToUpdate.quantity = quantity;
-
+     
         await itemToUpdate.save();
         res.status(200).json(itemToUpdate);
 

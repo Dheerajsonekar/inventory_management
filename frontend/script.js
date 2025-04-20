@@ -60,8 +60,8 @@ async function updateQuantity(id, number){
         console.log("not enough quantity to buy");
         return;
        }
-       item.quantity = item.quantity - number;
-       await axios.put(`http://localhost:3000/api/inventory/${id}`, item);
+       const updateQuantity  = parseInt(item.quantity) - number;
+       await axios.put(`http://localhost:3000/api/inventory/${id}`, {quantity: updateQuantity});
        await showItems();
     }catch(err){
         console.error("error at updating quantity: ", err);
